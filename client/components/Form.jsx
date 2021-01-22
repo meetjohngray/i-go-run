@@ -9,19 +9,23 @@ function Form () {
   console.log(watch('example')) // watch input value by passing the name of it
 
   return (
-    // {/* "handleSubmit" will validate your inputs before invoking "onSubmit" */}
-    <form onSubmit={handleSubmit(onSubmit)}>
-      {/* register your input into the hook by invoking the "register" function */}
-      <Input name="example" defaultValue="test" ref={register} />
+    <>
+      <Container maxW='xl' centerContent>
+      {/* "handleSubmit" will validate your inputs before invoking "onSubmit" */}
+        <form onSubmit={handleSubmit(onSubmit)}>
+          {/* register your input into the hook by invoking the "register" function */}
+          <Input name="example" defaultValue="test" ref={register} />
 
-      {/* include validation with required or other standard HTML validation rules */}
-      <Input name="exampleRequired" ref={register({ required: true })} />
+          {/* include validation with required or other standard HTML validation rules */}
+          <Input name="exampleRequired" ref={register({ required: true })} />
 
-      {/* errors will return when field validation fails  */}
-      {errors.exampleRequired && <span>This field is required</span>}
+          {/* errors will return when field validation fails  */}
+          {errors.exampleRequired && <span>This field is required</span>}
 
-      <input type="submit" />
-    </form>
+          <input type="submit" />
+        </form>
+      </Container> 
+    </>
   )
 }
 
