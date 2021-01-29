@@ -1,50 +1,64 @@
 import React, { useState } from 'react'
-import { Container, Flex, Heading, Input, Button, FormControl, FormLabel, FormErrorMessage,FormHelperText, } from '@chakra-ui/react'
-import { useForm } from 'react-hook-form'
+import { Container, Flex, Input, RadioGroup, HStack, Radio, NumberIncrementStepper, NumberDecrementStepper, Button, FormControl, FormLabel, FormErrorMessage, FormHelperText } from '@chakra-ui/react'
+import { useForm, Controller } from 'react-hook-form'
 
 function Form () {
-  const { register, handleSubmit, watch, errors } = useForm()
-  const onSubmit = data => console.log(data)
-  console.log(watch('example')) // watch input value by passing the name of it
-
-  const [myRun, setMyRun] = useState({})
+  const { register, handleSubmit, watch, control, errors } = useForm()
+  const onSubmit = data => { console.log('Clicked', data) }
+  console.log(watch('distance')) // watch input value by passing the name of it
+  const [radioValue, setRadioValue] = useState('metric')
+  // const [myRun, setMyRun] = useState({})
 
   return (
     <>
       <Container maxW='xl' mt='5' centerContent>
         {/* "handleSubmit" will validate your inputs before invoking "onSubmit" */}
-        <form onSubmit={handleSubmit(onSubmit)}>
-          <Flex justifyContent="center" alignContent="center">
-            <FormControl id='distance' padding='4' maxW='3xl'>
-              <FormLabel htmlFor="distance">Distance</FormLabel>
-              {/* register your input into the hook by invoking the "register" function */}
-              <Input type='number' name='distance' defaultValue="test" ref={register} />
-              <FormHelperText>Enter the distance in miles.</FormHelperText>
+        <Flex justifyContent="center" alignContent="center">
+          <form onSubmit={handleSubmit(onSubmit)}>
+            <FormControl>
+              <FormLabel htmlFor='date'>Date</FormLabel>
+              <Input type="datetime-local" placeholder="date" name="date" ref={register({ required: true })} />
             </FormControl>
-            <FormControl id='time' padding='4' maxW='3xl'>
-              <FormLabel htmlFor='time'>Time</FormLabel>
-              {/* include validation with required or other standard HTML validation rules */}
-              <Input type='number' name="time" ref={register({ required: true })} />
-              <FormHelperText>Enter the time in minutes.</FormHelperText>
-              {errors.exampleRequired && <span>This field is required</span>}
+            <Controller
+              name='units'
+              control={control}
+              render={({ onChange, value }) => (
+                <FormControl as="fieldset">
+                  <FormLabel as='legend' htmlFor='units'>Unit of Measure</FormLabel>
+                  <RadioGroup defaultValue="metric" onChange={setRadioValue} value={radioValue} >
+                    <HStack spacing="24px">
+                      <Radio value="metric">Metric</Radio>
+                      <Radio value="imperial">Imperial</Radio>
+                    </HStack>
+                  </RadioGroup>
+                  {/* <Input name="units" type="radio" value="metric" ref={register({ required: true })}/> */}
+                  {/* <Input name="units" type="radio" value="imperial" ref={register({ required: true })}/> */}
+                </FormControl>
+              )}
+            />
+
+            <FormControl>
+              <FormLabel htmlFor='distance'>Distance</FormLabel>
+              <Input type="number" placeholder="distance" name="distance" ref={register({ required: true, max: 300, min: 0, maxLength: 100 })} />
             </FormControl>
-            <FormControl id='pace' padding='4' maxW='3xl'>
+            <FormControl>
+              <FormLabel htmlFor='totalTime'>Total Time</FormLabel>
+              <Input type="time" placeholder="Total Time" name="totalTime" ref={register({ required: true, maxLength: 12 })} />
+            </FormControl>
+            <FormControl>
               <FormLabel htmlFor='pace'>Pace</FormLabel>
-              <Input type='number' name="pace" ref={register({ required: true })} />
-              <FormHelperText>Enter the pace in minutes per mile.</FormHelperText>
-              {errors.exampleRequired && <span>This field is required</span>}
+              <Input type="time" placeholder="Pace" name="pace" ref={register({ required: true })} />
             </FormControl>
-            <FormControl id='elevation' padding='4' maxW='3xl'>
-              <FormLabel htmlFor='elevation'>Elevation</FormLabel>
-              <Input type='number' name="elevation" ref={register({ required: true })} />
-              <FormHelperText>Enter the elevation gain in feet.</FormHelperText>
-              {errors.exampleRequired && <span>This field is required</span>}
+            <FormControl>
+              <FormLabel htmlFor='elevation'>Elevation Gain</FormLabel>
+              <Input type="number" placeholder="Elevation Gain" name="elevation" ref={register({ required: true, max: 40000, min: 0 })} />
             </FormControl>
-            <FormControl padding='4' maxW='3xl'>
-              <Button color="primary" textAlign="center" type="submit">Submit</Button>
-            </FormControl>
-          </Flex>
-        </form>
+
+            <Button color="primary" textAlign="center" type="submit">Submit</Button>
+
+          </form>
+        </Flex>
+        <p>You ran {watch('distance')} miles!</p>
       </Container>
     </>
   )
