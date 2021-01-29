@@ -6,7 +6,7 @@ function Form () {
   const { register, handleSubmit, watch, control, errors } = useForm()
   const onSubmit = data => { console.log('Clicked', data) }
   console.log(watch('distance')) // watch input value by passing the name of it
-  const [radioValue, setRadioValue] = useState('metric')
+  // const [radioValue, setRadioValue] = useState('')
   // const [myRun, setMyRun] = useState({})
 
   return (
@@ -15,29 +15,31 @@ function Form () {
         {/* "handleSubmit" will validate your inputs before invoking "onSubmit" */}
         <Flex justifyContent="center" alignContent="center">
           <form onSubmit={handleSubmit(onSubmit)}>
-            <FormControl>
+            {/* <FormControl>
               <FormLabel htmlFor='date'>Date</FormLabel>
               <Input type="datetime-local" placeholder="date" name="date" ref={register({ required: true })} />
-            </FormControl>
+            </FormControl> */}
             <Controller
               name='units'
               control={control}
+              defaultValue=''
+              // onChange={value => (value)}
               render={({ onChange, value }) => (
                 <FormControl as="fieldset">
                   <FormLabel as='legend' htmlFor='units'>Unit of Measure</FormLabel>
-                  <RadioGroup defaultValue="metric" onChange={setRadioValue} value={radioValue} >
+                  <RadioGroup>
                     <HStack spacing="24px">
-                      <Radio value="metric">Metric</Radio>
-                      <Radio value="imperial">Imperial</Radio>
+                      <Radio value={value} onChange={value => onChange('metric')}>Metric</Radio>
+                      <Radio value={value} onChange={value => onChange('imperial')}>Imperial</Radio>
                     </HStack>
                   </RadioGroup>
-                  {/* <Input name="units" type="radio" value="metric" ref={register({ required: true })}/> */}
-                  {/* <Input name="units" type="radio" value="imperial" ref={register({ required: true })}/> */}
                 </FormControl>
               )}
             />
 
-            <FormControl>
+            {/* <input name="units" type="radio" value="metric" ref={register({ required: true })}/>
+            <input name="units" type="radio" value="imperial" ref={register({ required: true })}/> */}
+            {/* <FormControl>
               <FormLabel htmlFor='distance'>Distance</FormLabel>
               <Input type="number" placeholder="distance" name="distance" ref={register({ required: true, max: 300, min: 0, maxLength: 100 })} />
             </FormControl>
@@ -52,7 +54,7 @@ function Form () {
             <FormControl>
               <FormLabel htmlFor='elevation'>Elevation Gain</FormLabel>
               <Input type="number" placeholder="Elevation Gain" name="elevation" ref={register({ required: true, max: 40000, min: 0 })} />
-            </FormControl>
+            </FormControl> */}
 
             <Button color="primary" textAlign="center" type="submit">Submit</Button>
 
