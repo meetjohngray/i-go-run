@@ -23,14 +23,13 @@ function Form () {
               name='units'
               control={control}
               defaultValue=''
-              // onChange={value => (value)}
               render={({ onChange, value }) => (
                 <FormControl as="fieldset">
                   <FormLabel as='legend' htmlFor='units'>Unit of Measure</FormLabel>
                   <RadioGroup>
                     <HStack spacing="24px">
-                      <Radio value={value} onChange={value => onChange('metric')}>Metric</Radio>
-                      <Radio value={value} onChange={value => onChange('imperial')}>Imperial</Radio>
+                      <Radio value={value} onChange={() => onChange('metric')}>Metric</Radio>
+                      <Radio value={value} onChange={() => onChange('imperial')}>Imperial</Radio>
                     </HStack>
                   </RadioGroup>
                 </FormControl>
