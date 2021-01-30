@@ -1,5 +1,6 @@
 import React from 'react'
 import { Container, Box, Heading } from '@chakra-ui/react'
+import Summary from './Summary'
 import Form from './Form'
 
 function Hello () {
@@ -9,10 +10,12 @@ function Hello () {
         <Heading as='h1'>I Go Run</Heading>
       </Box>
       <Box>
+        <Summary />
+      </Box>
+      <Box>
         <Form />
       </Box>
     </Container>
-
   )
 }
 
