@@ -12,9 +12,9 @@ function Hello () {
       <Box>
         <Summary />
       </Box>
-      <Box>
+      {/* <Box>
         <Form />
-      </Box>
+      </Box> */}
     </Container>
   )
 }
