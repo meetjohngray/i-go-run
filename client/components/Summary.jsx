@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useQuery } from 'react-query'
-import { Flex, Heading, Table, Thead, Tbody, Tr, Th, Td, Link, Text } from '@chakra-ui/react'
-import { parseTotalTime, parseElapsedTime } from './utils/conversions'
+import { Flex, Heading, Table, Thead, Tbody, Tr, Th } from '@chakra-ui/react'
+import TableRow from './TableRow'
 import data from '../data/runData.json'
 
 // const fetchRuns = async () => {
@@ -11,9 +11,6 @@ import data from '../data/runData.json'
 // }
 
 function Summary () {
-  function getMiles (distance) {
-    return (distance * 0.0006213712).toFixed(2)
-  }
   console.log(data)
 
   // const [runs, setRuns] = useState({})
@@ -38,12 +35,8 @@ function Summary () {
           <Tbody>
             {data.sheet1.map((item) => {
               return (
-                <Tr key={item.id}>
-                  <Td>{parseTotalTime(item.dateTime)}</Td>
-                  <Td>{getMiles(item.distance)} Miles</Td>
-                  <Td>{parseElapsedTime(item.elapsedTime)}</Td>
-                  <Td><Link href={item.stravaLink}>Strava</Link></Td>
-                </Tr>)
+                <TableRow key={item.id} item= {item} />
+              )
             })
             }
           </Tbody>

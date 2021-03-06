@@ -16,3 +16,7 @@ export function parseElapsedTime (timeStr) {
     return dayjs(timeStr, ['HH:mm:ss', 'mm:ss']).format('H:mm:ss')
   }
 }
+
+export function getMiles (distance) {
+  return (distance * 0.0006213712).toFixed(2)
+}
