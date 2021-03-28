@@ -9,6 +9,7 @@ function Form () {
   const { register, handleSubmit, watch, control, errors } = useForm()
   const onSubmit = data => { console.log('Clicked', data) }
   console.log(watch('distance')) // watch input value by passing the name of it
+  console.log(watch('units')) // watch input value by passing the name of it
   // const [radioValue, setRadioValue] = useState('')
   // const [myRun, setMyRun] = useState({})
 
@@ -25,14 +26,17 @@ function Form () {
             <Controller
               name='units'
               control={control}
-              defaultValue=''
+              defaultValue='imperial'
               render={({ onChange, value }) => (
                 <FormControl as="fieldset">
                   <FormLabel as='legend' htmlFor='units'>Unit of Measure</FormLabel>
-                  <RadioGroup value={unitsOfMeasure} onChange={setUnitsOfMeasure}>
+                  <RadioGroup value={unitsOfMeasure} onChange={value => onChange(value)}>
+                    {/* <RadioGroup value={unitsOfMeasure} onChange={setUnitsOfMeasure}
+                    onChangeValue = {value => onChange(value)}
+                  > */}
                     <Stack direction="row">
                       <Radio value="imperial">Imperial</Radio>
-                      <Radio value="metric">Metric</Radio>
+                      <Radio value="metric" >Metric</Radio>
                     </Stack>
                   </RadioGroup>
                 </FormControl>
