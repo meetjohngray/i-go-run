@@ -11,7 +11,7 @@ import data from '../data/runData.json'
 // }
 
 function Summary () {
-  console.log(data)
+  // console.log(data)
 
   // const [runs, setRuns] = useState({})
 

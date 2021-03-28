@@ -6,15 +6,15 @@ import Form from './Form'
 function Hello () {
   return (
     <Container maxW='xl' centerContent>
-      <Box padding='4' mt='4' bg='gray.100' maxW='3xl'>
+      <Container padding='4' mt='4' bg='gray.100' w='100%' centerContent>
         <Heading as='h1'>I Go Run</Heading>
-      </Box>
+      </Container>
       <Box>
         <Summary />
       </Box>
-      {/* <Box>
+      <Box>
         <Form />
-      </Box> */}
+      </Box>
     </Container>
   )
 }

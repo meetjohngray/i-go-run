@@ -1,10 +1,11 @@
 // https://www.akashmittal.com/react-native-forms-using-react-hook-form/
 
 import React, { useState } from 'react'
-import { Container, Flex, Input, RadioGroup, HStack, Radio, NumberIncrementStepper, NumberDecrementStepper, Button, FormControl, FormLabel, FormErrorMessage, FormHelperText } from '@chakra-ui/react'
+import { Container, Flex, Input, RadioGroup, Stack, Radio, NumberIncrementStepper, NumberDecrementStepper, Button, FormControl, FormLabel, FormErrorMessage, FormHelperText } from '@chakra-ui/react'
 import { useForm, Controller } from 'react-hook-form'
 
 function Form () {
+  const [unitsOfMeasure, setUnitsOfMeasure] = useState('imperial')
   const { register, handleSubmit, watch, control, errors } = useForm()
   const onSubmit = data => { console.log('Clicked', data) }
   console.log(watch('distance')) // watch input value by passing the name of it
@@ -28,11 +29,11 @@ function Form () {
               render={({ onChange, value }) => (
                 <FormControl as="fieldset">
                   <FormLabel as='legend' htmlFor='units'>Unit of Measure</FormLabel>
-                  <RadioGroup>
-                    <HStack spacing="24px">
-                      <Radio value={value} onChange={() => onChange('metric')}>Metric</Radio>
-                      <Radio value={value} onChange={() => onChange('imperial')}>Imperial</Radio>
-                    </HStack>
+                  <RadioGroup value={unitsOfMeasure} onChange={setUnitsOfMeasure}>
+                    <Stack direction="row">
+                      <Radio value="imperial">Imperial</Radio>
+                      <Radio value="metric">Metric</Radio>
+                    </Stack>
                   </RadioGroup>
                 </FormControl>
               )}
@@ -40,7 +41,7 @@ function Form () {
 
             {/* <input name="units" type="radio" value="metric" ref={register({ required: true })}/>
             <input name="units" type="radio" value="imperial" ref={register({ required: true })}/> */}
-            {/* <FormControl>
+            <FormControl>
               <FormLabel htmlFor='distance'>Distance</FormLabel>
               <Input type="number" placeholder="distance" name="distance" ref={register({ required: true, max: 300, min: 0, maxLength: 100 })} />
             </FormControl>
@@ -55,7 +56,7 @@ function Form () {
             <FormControl>
               <FormLabel htmlFor='elevation'>Elevation Gain</FormLabel>
               <Input type="number" placeholder="Elevation Gain" name="elevation" ref={register({ required: true, max: 40000, min: 0 })} />
-            </FormControl> */}
+            </FormControl>
 
             <Button color="primary" textAlign="center" type="submit">Submit</Button>
 
