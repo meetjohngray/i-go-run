@@ -62,7 +62,7 @@ function Form () {
 
           </form>
         </Flex>
-        <p>You ran {watch('distance')} miles!</p>
+        <p>You ran {watch('distance')} {unitsOfMeasure === 'imperial' ? 'miles' : 'kilometers'}!</p>
       </Container>
     </>
   )
