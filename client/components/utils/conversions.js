@@ -20,3 +20,11 @@ export function parseElapsedTime (timeStr) {
 export function getMiles (distance) {
   return (distance * 0.0006213712).toFixed(2)
 }
+
+export function getPace (timeSeconds, distance) {
+  const pace = (timeSeconds / (getMiles(distance)) / 60).toFixed(2)
+  console.log('Pace!', pace)
+  return pace
+}
+
+getPace(15937, 28980.4)
