@@ -8,6 +8,8 @@ function TableRow (props) {
       <Td>{parseTotalTime(props.item.dateTime)}</Td>
       <Td>{getMiles(props.item.distance)} Miles</Td>
       <Td>{parseElapsedTime(props.item.elapsedTime)}</Td>
+      <Td>Pace</Td>
+      <Td>Elevation Gain</Td>
       <Td><Link href={props.item.stravaLink}>Strava</Link></Td>
     </Tr>
   )

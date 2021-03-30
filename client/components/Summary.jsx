@@ -29,6 +29,8 @@ function Summary () {
               <Th>Date</Th>
               <Th>Distance</Th>
               <Th>Time</Th>
+              <Th>Pace</Th>
+              <Th>Elevation Gain</Th>
               <Th>Strava</Th>
             </Tr>
           </Thead>
