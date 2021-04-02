@@ -1,6 +1,8 @@
 import dayjs from 'dayjs'
 import customParseFormat from 'dayjs/plugin/customParseFormat'
+import duration from 'dayjs/plugin/duration'
 dayjs.extend(customParseFormat)
+dayjs.extend(duration)
 
 export function parseTotalTime (timeStr) {
   return dayjs(timeStr, ['MMMM-DD-YYYY', 'MMMM-D-YYYY']).format('YYYY-MM-DD [at] H:mm:ss')
@@ -22,9 +24,7 @@ export function getMiles (distance) {
 }
 
 export function getPace (timeSeconds, distance) {
-  const pace = (timeSeconds / (getMiles(distance)) / 60).toFixed(2)
-  console.log('Pace!', pace)
+  let pace = (timeSeconds / (getMiles(distance)) / 60).toFixed(2)
+  pace = dayjs.duration(pace, 'm').format('mm:ss')
   return pace
 }
-
-getPace(15937, 28980.4)
