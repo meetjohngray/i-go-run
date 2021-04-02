@@ -1,22 +1,24 @@
 import dayjs from 'dayjs'
-import customParseFormat from 'dayjs/plugin/customParseFormat'
+// import customParseFormat from 'dayjs/plugin/customParseFormat'
 import duration from 'dayjs/plugin/duration'
-dayjs.extend(customParseFormat)
+// dayjs.extend(customParseFormat)
 dayjs.extend(duration)
 
-export function parseTotalTime (timeStr) {
-  return dayjs(timeStr, ['MMMM-DD-YYYY', 'MMMM-D-YYYY']).format('YYYY-MM-DD [at] H:mm:ss')
+export function parseDate (timeStr) {
+  return dayjs(timeStr).format('YYYY-MM-DD [at] h:mm:ss')
 }
 
 export function parseElapsedTime (timeStr) {
-  // const regex = /hour/
-  // if ((timeStr.search(regex) > -1) && Number(timeStr.substring(0, 2)) > 24) {
-  //   let parsedTimeStr = `${Number(timeStr.substring(0, 2)) - 24} ${timeStr.substring(3)}`
-  //   parsedTimeStr = `1:${dayjs(parsedTimeStr, ['HH:mm:ss', 'mm:ss']).format('H:mm:ss')}`
-  //   return parsedTimeStr
-  // } else {
-  return dayjs(timeStr, ['HH:mm:ss', 'mm:ss']).format('H:mm:ss')
-  // }
+  let elapsedTime = dayjs.duration(timeStr, 's').format('D:HH:mm:ss')
+  console.log('Unparsed Elapsed Time', elapsedTime)
+  const regex = /^0:0/
+  const regex2 = /^0:00:/
+  if (!elapsedTime.search(regex2)) {
+    elapsedTime = `${elapsedTime.toString().substring(5)}`
+  } else if (!elapsedTime.search(regex)) {
+    elapsedTime = `${elapsedTime.toString().substring(2)}`
+  }
+  return elapsedTime
 }
 
 export function getMiles (distance) {
