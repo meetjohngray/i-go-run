@@ -1,8 +1,8 @@
 import React from 'react'
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+// import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import { Container, Box, Heading } from '@chakra-ui/react'
 import Summary from './Summary'
-import Form from './Form'
+// import Form from './Form'
 
 function App () {
   return (
@@ -13,9 +13,9 @@ function App () {
       <Box>
         <Summary />
       </Box>
-      <Box>
+      {/* <Box>
         <Form />
-      </Box>
+      </Box> */}
     </Container>
   )
 }

@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { useQuery } from 'react-query'
 import { Flex, Heading, Table, Thead, Tbody, Tr, Th } from '@chakra-ui/react'
 import TableRow from './TableRow'
-import data from '../data/runData.json'
+import data from '../data/stravaData.json'
 
 // const fetchRuns = async () => {
 //   const response = await fetch('https://api.sheety.co/95b80a7b10ebccf74864840085f03df1/iGoRun/sheet1')
@@ -11,7 +11,7 @@ import data from '../data/runData.json'
 // }
 
 function Summary () {
-  // console.log(data)
+  console.log(data)
 
   // const [runs, setRuns] = useState({})
 
@@ -31,11 +31,11 @@ function Summary () {
               <Th>Time</Th>
               <Th>Pace</Th>
               <Th>Elevation Gain</Th>
-              <Th>Strava</Th>
+              {/* <Th>Strava</Th> */}
             </Tr>
           </Thead>
           <Tbody>
-            {data.sheet1.map((item) => {
+            {data.map((item) => {
               return (
                 <TableRow key={item.id} item= {item} />
               )

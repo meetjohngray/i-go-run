@@ -9,14 +9,14 @@ export function parseTotalTime (timeStr) {
 }
 
 export function parseElapsedTime (timeStr) {
-  const regex = /hour/
-  if ((timeStr.search(regex) > -1) && Number(timeStr.substring(0, 2)) > 24) {
-    let parsedTimeStr = `${Number(timeStr.substring(0, 2)) - 24} ${timeStr.substring(3)}`
-    parsedTimeStr = `1:${dayjs(parsedTimeStr, ['HH:mm:ss', 'mm:ss']).format('H:mm:ss')}`
-    return parsedTimeStr
-  } else {
-    return dayjs(timeStr, ['HH:mm:ss', 'mm:ss']).format('H:mm:ss')
-  }
+  // const regex = /hour/
+  // if ((timeStr.search(regex) > -1) && Number(timeStr.substring(0, 2)) > 24) {
+  //   let parsedTimeStr = `${Number(timeStr.substring(0, 2)) - 24} ${timeStr.substring(3)}`
+  //   parsedTimeStr = `1:${dayjs(parsedTimeStr, ['HH:mm:ss', 'mm:ss']).format('H:mm:ss')}`
+  //   return parsedTimeStr
+  // } else {
+  return dayjs(timeStr, ['HH:mm:ss', 'mm:ss']).format('H:mm:ss')
+  // }
 }
 
 export function getMiles (distance) {
