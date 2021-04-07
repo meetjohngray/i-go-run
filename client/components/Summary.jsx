@@ -36,9 +36,11 @@ function Summary () {
           </Thead>
           <Tbody>
             {data.map((item) => {
-              return (
-                <TableRow key={item.id} item= {item} />
-              )
+              if (item.type !== 'Workout') {
+                return (
+                  <TableRow key={item.id} item= {item} />
+                )
+              }
             })
             }
           </Tbody>
