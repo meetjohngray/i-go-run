@@ -30,3 +30,8 @@ export function getPace (timeSeconds, distance) {
   pace = dayjs.duration(pace, 'm').format('mm:ss')
   return pace
 }
+
+export function metersToFeet (elevationInMeters) {
+  const elevationInFeet = Math.round((elevationInMeters * 3.2808).toFixed(2))
+  return elevationInFeet
+}
