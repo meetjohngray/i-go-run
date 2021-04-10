@@ -8,20 +8,22 @@ import Token from './Token'
 
 function App () {
   return (
-    <div>
-      <Switch>
-        <Container maxW='xl' centerContent>
-          <Container padding='4' mt='4' bg='gray.100' w='100%' centerContent>
-            <Heading as='h1'>I Go Run</Heading>
-          </Container>
-          <Box>
+    <>
+      <Container maxW='xl' centerContent>
+        <Container padding='4' mt='4' bg='gray.100' w='100%' centerContent>
+          <Heading as='h1'>I Go Run</Heading>
+        </Container>
+        <Box>
+          <Switch>
             <Route path='/token' exact component={Token} />
             <Route path='/' exact component={HomePage} />
-            {/* <Summary /> */}
-          </Box>
-        </Container>
-      </Switch>
-    </div>
+          </Switch>
+          {/* <HomePage /> */}
+          {/* <Token /> */}
+          {/* <Summary /> */}
+        </Box>
+      </Container>
+    </>
   )
 }
 

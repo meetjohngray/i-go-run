@@ -2,7 +2,7 @@ import { takeLeading, call, put } from 'redux-saga/effects'
 import { STRAVA_AUTH_START, STRAVA_AUTH_TOKEN_VALIDATE } from '../constants/auth'
 import { push } from 'connected-react-router'
 
-import { tokenClient } from '../../apis/index'
+import { tokenClient } from '../../apis'
 import { updateAuthTokens } from '../actions/auth'
 
 const clientID = process.env.REACT_APP_STRAVA_CLIENT_ID
