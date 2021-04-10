@@ -2,7 +2,7 @@ import { takeLeading, call } from 'redux-saga/effects'
 import { STRAVA_AUTH_START } from '../constants/auth'
 
 const clientID = process.env.REACT_APP_STRAVA_CLIENT_ID
-console.log(clientID)
+
 function handOffToStravaAuth () {
   // Get the current address of the app running ex. localhost ect.
   const { origin } = window
