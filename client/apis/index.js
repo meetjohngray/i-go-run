@@ -1,29 +1,25 @@
-import request from 'superagent'
+import axios from 'axios'
 
-const apiBase = ''
+export const tokenClient = axios.create({
+  baseURL: 'https://www.strava.com/oauth',
+  timeout: 3000
+})
 
-export function example () {
-  return request
-    .get(apiBase)
-    .then(response => response.body)
-}
+const apiClient = axios.create({
+  baseURL: 'https://www.strava.com/api/v3',
+  timeout: 3000
+})
 
-// export function apiAddTask (task) {
-//   return request
-//     .post(apiBase)
-//     .send(task)
-//     .then(response => response.body.id)
-// }
+apiClient.interceptors.request.use(
+  (config) => {
+    const token = localStorage.getItem('accessToken')
 
-// export function apiDeleteTask (id) {
-//   return request
-//     .delete(`${apiBase}/${id}`)
-//     .then(response => response.body)
-// }
-
-// export function apiUpdateTask (id, task) {
-//   return request
-//     .patch(`${apiBase}/${id}`)
-//     .send(task)
-//     .then(response => response.body.id)
-// }
+    if (token) {
+      config.headers.Authorization = `Bearer ${token}`
+    }
+    return config
+  },
+  (error) => {
+    Promise.reject(error)
+  }
+)

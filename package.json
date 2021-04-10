@@ -70,6 +70,7 @@
     "@chakra-ui/react": "^1.1.5",
     "@emotion/react": "^11.1.4",
     "@emotion/styled": "^11.0.0",
+    "axios": "^0.21.1",
     "connected-react-router": "^6.9.1",
     "dayjs": "^1.10.4",
     "dotenv": "^8.2.0",
