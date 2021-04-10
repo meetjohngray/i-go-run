@@ -48,6 +48,7 @@
     "@testing-library/react": "^11.2.2",
     "babel-loader": "^8.1.0",
     "css-loader": "^4.2.1",
+    "dotenv-webpack": "^7.0.2",
     "eslint": "^7.14.0",
     "eslint-config-eda": "^0.1.4",
     "jest": "^26.4.1",
