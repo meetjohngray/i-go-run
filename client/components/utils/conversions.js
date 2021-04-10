@@ -10,7 +10,6 @@ export function parseDate (timeStr) {
 
 export function parseElapsedTime (timeStr) {
   let elapsedTime = dayjs.duration(timeStr, 's').format('D:HH:mm:ss')
-  console.log('Unparsed Elapsed Time', elapsedTime)
   const regex = /^0:0/
   const regex2 = /^0:00:/
   if (!elapsedTime.search(regex2)) {

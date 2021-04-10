@@ -11,7 +11,7 @@ import data from '../data/stravaData.json'
 // }
 
 function Summary () {
-  console.log(data)
+  // console.log(data)
 
   // const [runs, setRuns] = useState({})
 
