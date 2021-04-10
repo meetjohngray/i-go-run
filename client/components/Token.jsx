@@ -12,10 +12,9 @@ const Token = () => {
 
   useEffect(() => {
     // Check if user/app is authenticated
+    // Get code from the query string
     const { code } = queryString.parse(location.search)
     if (!auth.isAuthenticated && code) {
-    // Get code from the query string
-      // const { code } = queryString.parse(location.search)
       // Dispatch the validation code to be handled by saga
       dispatch(validateStravaToken(code))
     } else {

@@ -3,7 +3,8 @@ import { all } from 'redux-saga/effects'
 
 // import the new async function we created
 import { beginStravaAuthAsync } from './auth'
+import { validatesStravaTokenAsync } from './auth'
 
 export default function * rootSaga () {
-  yield all([beginStravaAuthAsync()])
+  yield all([beginStravaAuthAsync(), validatesStravaTokenAsync()])
 }
