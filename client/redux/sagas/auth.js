@@ -66,3 +66,52 @@ export function * validatesStravaTokenAsync () {
   // Listen for STRAVA_AUTH_TOKEN_VALIDATE
   yield takeLeading(STRAVA_AUTH_TOKEN_VALIDATE, validateStravaToken)
 }
+
+const updateRefreshToken = () => {
+  // Get the refresh token from localStorage
+  const refreshToken = localStorage.getItem('refreshToken')
+
+  // using the token client we then post to the token endpoint with
+  // our client_id, client_secret, the refresh_token
+  // In a real world app we would pass our refresh_token to a backend where
+  // we can keep the client_secret a secret!
+  return tokenClient({
+    url: '/token',
+    method: 'post',
+    params: {
+      client_id: clientID,
+      client_secret: clientSecret,
+      refresh_token: refreshToken,
+      grant_type: 'refresh_token'
+    }
+  })
+    .then((response) => {
+    // Return the new tokens and timestamps to be handled
+      return response.data
+    })
+    .catch((error) => {
+      throw new Error(error)
+    })
+}
+
+const tokenIsValid = () => {
+  // Get the existing token from localStorage
+  const expiresAt = localStorage.getItem('expiresAt')
+  // Create a new expires timestamp for now down to the second
+  const now = Math.floor(Date.now() / 1000)
+  // Check if the expires timestamp is less than now - meaning it has expired
+  return now < expiresAt
+}
+
+export function * validateAuthTokens () {
+  // 1. call the function to check if the token is valid
+  const validToken = yield call(tokenIsValid)
+
+  // 2. If the token is invalid, then start the process to get a new one
+  if (!validToken) {
+    // Call the function to get new refresh tokens
+    const data = yield call(updateRefreshToken)
+    // put the action to handle the token updates (which stores them in localStorage)
+    yield put(updateAuthTokens(data))
+  }
+}

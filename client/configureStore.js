@@ -7,12 +7,11 @@ import { loadState, saveState } from './localStorage'
 
 import createRootReducer from './redux/reducers'
 import rootSaga from './redux/sagas'
-import { last } from 'lodash'
 
 const sagaMiddleware = createSagaMiddleware()
 export const history = createBrowserHistory()
 
-const persistedState = loadState() //Get the state from local storage
+const persistedState = loadState() // Get the state from local storage
 
 const configureStore = () => {
   const enhancers = []
