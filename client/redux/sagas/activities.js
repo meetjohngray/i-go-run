@@ -75,8 +75,8 @@ function * updateAtheleteActivity () {
     yield console.log(err)
   }
   // Just so the users feel like something is happening...
-  // Currently NOT working
-  // yield delay(1000)
+  // This is kind of hacky, tuturial did not have a func as first arg, making this throw an error
+  yield delay(() => {}, 3000)
   // ...and back to the non-loading state
   yield put(setActivitiesState({ loading: false }))
 }
