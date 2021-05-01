@@ -36,9 +36,8 @@ const configureStore = () => {
     // Throttle the save
     throttle(() => {
       saveState({
-        auth: store.getState().auth // Only save these sections of the auth
-        // if we want to save other state we can add it in here
-        // activities: store.getState().activities, etc!
+        auth: store.getState().auth,
+        activities: store.getState().activities
       })
     }, 1000) // 1 per second max!
   )

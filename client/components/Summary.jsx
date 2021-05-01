@@ -10,8 +10,8 @@ import TableRow from './TableRow'
 //   return data
 // }
 
-function Summary ({ activities }) {
-  // console.log(data)
+function Summary ({ data }) {
+  const { loading, activities } = data
 
   // const [runs, setRuns] = useState({})
 
@@ -21,31 +21,39 @@ function Summary ({ activities }) {
   // if (error) return <span>Ooops! Something went wrong.</span>
   return (
     <>
-      <Heading as='h2'>Your Runs</Heading>
-      <Flex justifyContent="center" alignContent="center">
-        <Table>
-          <Thead>
-            <Tr>
-              <Th>Date</Th>
-              <Th>Distance</Th>
-              <Th>Time</Th>
-              <Th>Pace</Th>
-              <Th>Elevation Gain</Th>
-              {/* <Th>Strava</Th> */}
-            </Tr>
-          </Thead>
-          <Tbody>
-            {activities.map((item) => {
-              if (item.type !== 'Workout') {
-                return (
-                  <TableRow key={item.id} item= {item} />
-                )
-              }
-            })
-            }
-          </Tbody>
-        </Table>
-      </Flex>
+      {loading ? (
+        <div>
+          <h3>Loading...</h3>
+        </div>
+      ) : (
+        <div>
+          <Heading as='h2'>Your Runs</Heading>
+          <Flex justifyContent="center" alignContent="center">
+            <Table>
+              <Thead>
+                <Tr>
+                  <Th>Date</Th>
+                  <Th>Distance</Th>
+                  <Th>Time</Th>
+                  <Th>Pace</Th>
+                  <Th>Elevation Gain</Th>
+                  {/* <Th>Strava</Th> */}
+                </Tr>
+              </Thead>
+              <Tbody>
+                {activities.slice(0).reverse().map((item) => {
+                  if (item.type !== 'Workout') {
+                    return (
+                      <TableRow key={item.id} item= {item} />
+                    )
+                  }
+                })
+                }
+              </Tbody>
+            </Table>
+          </Flex>
+        </div>
+      )}
     </>
   )
 }

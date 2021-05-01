@@ -5,6 +5,8 @@ import { call, put, select, takeLeading } from 'redux-saga/effects'
 import { apiClient } from '../../apis'
 import { validateAuthTokens } from './auth'
 import { ACTIVITIES_PAGE_LOADING_COMPLETE, ACTIVITIES_SYNC_START } from '../constants/activities'
+import { setActivitiesState } from '../actions/activities'
+import { delay } from 'lodash'
 
 const getActivity = (epoch, page = 1) => {
   // Get the data from Strava starting from 'epoch' and with the page number of 'page'
@@ -41,6 +43,9 @@ const getLastActivityTimestamp = (state) => {
 }
 
 function * updateAtheleteActivity () {
+  // Set activities_sync_state
+  yield put(setActivitiesState({ loading: true }))
+
   // 1. Check the tokens are valid and update as needed
   yield call(validateAuthTokens)
 
@@ -69,7 +74,13 @@ function * updateAtheleteActivity () {
   } catch (err) {
     yield console.log(err)
   }
+  // Just so the users feel like something is happening...
+  // Currently NOT working
+  // yield delay(1000)
+  // ...and back to the non-loading state
+  yield put(setActivitiesState({ loading: false }))
 }
+
 export function * watchUpdateAthleteActivitiesAsync () {
   yield takeLeading(ACTIVITIES_SYNC_START, updateAtheleteActivity)
 }

@@ -7,7 +7,7 @@ import Summary from './Summary'
 const HomePage = () => {
   // get the auth state so we can use to hide the button when authenicated
   const auth = useSelector((state) => state.auth)
-  const activities = useSelector((state) => state.activities.activities)
+  const activities = useSelector((state) => state.activities)
   // create a dispatch function
   const dispatch = useDispatch()
 
@@ -19,7 +19,7 @@ const HomePage = () => {
         <>
           <h2>Logged In</h2>
           <button type='button' onClick={() => dispatch(getActivities())}>Sync Activities</button>
-          <Summary activities={activities} />
+          <Summary data={activities} />
         </>
       ) : (
         // add the dispatch to the button onClick
