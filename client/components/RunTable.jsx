@@ -1,16 +1,8 @@
 import React from 'react'
-// import { useQuery } from 'react-query'
 import { Flex, Heading, Table, Thead, Tbody, Tr, Th } from '@chakra-ui/react'
 import TableRow from './TableRow'
-// import data from '../data/stravaData.json'
 
-// const fetchRuns = async () => {
-//   const response = await fetch('https://api.sheety.co/95b80a7b10ebccf74864840085f03df1/iGoRun/sheet1')
-//   const data = await response.json()
-//   return data
-// }
-
-function Summary ({ data }) {
+function RunTable ({ data }) {
   const { loading, activities } = data
 
   // const [runs, setRuns] = useState({})
@@ -58,4 +50,4 @@ function Summary ({ data }) {
   )
 }
 
-export default Summary
+export default RunTable

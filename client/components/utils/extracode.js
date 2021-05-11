@@ -1,8 +1,9 @@
+/*
 <form onSubmit={handleSubmit(onSubmit)}>
   <Flex justifyContent="center" alignContent="center">
     <FormControl id='distance' >
       <FormLabel htmlFor="distance">Distance</FormLabel>
-      {/* register your input into the hook by invoking the "register" function */}
+       register your input into the hook by invoking the "register" function
       <NumberInput min={0} name='distance' defaultValue="test" ref={register}>
         <NumberInputField name='distance'/>
         <NumberInputStepper>
@@ -14,7 +15,7 @@
     </FormControl>
     <FormControl id='time' >
       <FormLabel htmlFor='time'>Time</FormLabel>
-      {/* include validation with required or other standard HTML validation rules */}
+       include validation with required or other standard HTML validation rules
       <NumberInput min={0} name="time" ref={register({ required: true })}>
         <NumberInputField name='time'/>
         <NumberInputStepper>
@@ -54,3 +55,9 @@
     </FormControl>
   </Flex>
 </form>
+*/
+
+// const fetchRuns = async () => {
+//   const response = await fetch('https://api.sheety.co/95b80a7b10ebccf74864840085f03df1/iGoRun/sheet1')
+//   const data = await response.json()
+//   return data

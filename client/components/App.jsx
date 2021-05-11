@@ -4,8 +4,6 @@ import { Container, Box, Heading } from '@chakra-ui/react'
 import HomePage from './HomePage'
 import Token from './Token'
 
-// import Summary from './Summary'
-
 function App () {
   return (
     <>
@@ -18,9 +16,6 @@ function App () {
             <Route path='/token' exact component={Token} />
             <Route path='/' exact component={HomePage} />
           </Switch>
-          {/* <HomePage /> */}
-          {/* <Token /> */}
-          {/* <Summary /> */}
         </Box>
       </Container>
     </>

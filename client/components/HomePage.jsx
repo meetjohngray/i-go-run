@@ -2,7 +2,7 @@ import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { beginStravaAuthentication } from '../redux/actions/auth'
 import { getActivities } from '../redux/actions/activities'
-import Summary from './Summary'
+import RunTable from './RunTable'
 
 const HomePage = () => {
   // get the auth state so we can use to hide the button when authenicated
@@ -19,7 +19,7 @@ const HomePage = () => {
         <>
           <h2>Logged In</h2>
           <button type='button' onClick={() => dispatch(getActivities())}>Sync Activities</button>
-          <Summary data={activities} />
+          <RunTable data={activities} />
         </>
       ) : (
         // add the dispatch to the button onClick
