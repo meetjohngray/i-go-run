@@ -2,6 +2,7 @@ import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { beginStravaAuthentication } from '../redux/actions/auth'
 import { getActivities } from '../redux/actions/activities'
+import { Flex, Button, Text } from '@chakra-ui/react'
 import RunTable from './RunTable'
 
 const HomePage = () => {
@@ -12,20 +13,18 @@ const HomePage = () => {
   const dispatch = useDispatch()
 
   return (
-    <div>
-      <h1>Home</h1>
-
+    <Flex flexDirection='column'>
       { auth.isAuthenticated ? (
-        <>
-          <h2>Logged In</h2>
-          <button type='button' onClick={() => dispatch(getActivities())}>Sync Activities</button>
+        <Flex flexDirection='column'>
+          <Text textAlign='center' my='2'>Logged In</Text>
+          <Button type='button' onClick={() => dispatch(getActivities())}>Sync Activities</Button>
           <RunTable data={activities} />
-        </>
+        </Flex>
       ) : (
         // add the dispatch to the button onClick
-        <button type='button' onClick={() => dispatch(beginStravaAuthentication())}>Authorise On Strava</button>
+        <Button type='button' onClick={() => dispatch(beginStravaAuthentication())}>Authorise On Strava</Button>
       )}
-    </div>
+    </Flex>
   )
 }
 

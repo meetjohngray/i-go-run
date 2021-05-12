@@ -1,3 +1,4 @@
+// eslint-disable-next-line no-unused-vars
 import React, { useEffect } from 'react'
 import queryString from 'query-string'
 import { push } from 'connected-react-router'

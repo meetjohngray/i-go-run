@@ -1,16 +1,20 @@
 import React from 'react'
 import { Switch, Route } from 'react-router'
-import { Container, Box, Heading } from '@chakra-ui/react'
+import { Container, Box, Heading, Button, useColorMode, useColorModeValue } from '@chakra-ui/react'
 import HomePage from './HomePage'
 import Token from './Token'
 
 function App () {
+  const { toggleColorMode } = useColorMode()
+  const headingBackground = useColorModeValue('gray.100', 'gray.700')
+
   return (
     <>
-      <Container maxW='xl' centerContent>
-        <Container padding='4' mt='4' bg='gray.100' w='100%' centerContent>
-          <Heading as='h1'>I Go Run</Heading>
-        </Container>
+      <Container maxW='container.xl'>
+        <Box padding='4' mt='4' bg={headingBackground}>
+          <Heading as='h1' textAlign='center'>I Go Run</Heading>
+          <Button onClick={toggleColorMode}>Color Mode</Button>
+        </Box>
         <Box>
           <Switch>
             <Route path='/token' exact component={Token} />

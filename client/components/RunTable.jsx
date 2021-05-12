@@ -1,26 +1,38 @@
-import React from 'react'
-import { Flex, Heading, Table, Thead, Tbody, Tr, Th } from '@chakra-ui/react'
+import React, { useState, useRef, useEffect } from 'react'
+import { Box, Center, Heading, Table, Thead, Tbody, Tr, Th, Spinner, Button } from '@chakra-ui/react'
 import TableRow from './TableRow'
 
 function RunTable ({ data }) {
   const { loading, activities } = data
+  const [items, setItems] = useState(5)
+  const prevItemsRef = useRef()
+  const activitiesReverse = activities.slice(0).reverse()
 
-  // const [runs, setRuns] = useState({})
+  useEffect(() => {
+    prevItemsRef.current = items
+  })
+  const prevItems = prevItemsRef.current
 
-  // const { isLoading, error, data } = useQuery('runData', fetchRuns, { refetchOnWindowFocus: false })
+  const handleClick = () => {
+    setItems(
+      items >= activities.length
+        ? items
+        : items + 5
+    )
+    console.log(items)
+  }
 
-  // if (isLoading) return <span>Loading...</span>
-  // if (error) return <span>Ooops! Something went wrong.</span>
   return (
     <>
       {loading ? (
-        <div>
-          <h3>Loading...</h3>
-        </div>
+        <Center flexDirection='column'>
+          <Heading as='h3' textAlign='center'>Loading...</Heading>
+          <Spinner />
+        </Center>
       ) : (
-        <div>
+        <Box>
           <Heading as='h2'>Your Runs</Heading>
-          <Flex justifyContent="center" alignContent="center">
+          <Center>
             <Table>
               <Thead>
                 <Tr>
@@ -33,18 +45,21 @@ function RunTable ({ data }) {
                 </Tr>
               </Thead>
               <Tbody>
-                {activities.slice(0).reverse().map((item) => {
-                  if (item.type !== 'Workout') {
+                {activitiesReverse.slice(prevItems, items).map((activity) => {
+                  if (activity.type !== 'Workout') {
                     return (
-                      <TableRow key={item.id} item= {item} />
+                      <TableRow key={activity.id} item= {activity} />
                     )
                   }
                 })
                 }
               </Tbody>
             </Table>
-          </Flex>
-        </div>
+          </Center>
+          <Center>
+            <Button onClick={() => handleClick()}>Show More!</Button>
+          </Center>
+        </Box>
       )}
     </>
   )

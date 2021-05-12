@@ -61,3 +61,9 @@
 //   const response = await fetch('https://api.sheety.co/95b80a7b10ebccf74864840085f03df1/iGoRun/sheet1')
 //   const data = await response.json()
 //   return data
+
+// const [runs, setRuns] = useState({})
+
+// const { isLoading, error, data } = useQuery('runData', fetchRuns, { refetchOnWindowFocus: false })
+// if (isLoading) return <span>Loading...</span>
+// if (error) return <span>Ooops! Something went wrong.</span>
