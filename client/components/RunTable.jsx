@@ -4,7 +4,7 @@ import TableRow from './TableRow'
 
 function RunTable ({ data }) {
   const { loading, activities } = data
-  const [items, setItems] = useState(5)
+  const [items, setItems] = useState(0)
   const prevItemsRef = useRef()
   const activitiesReverse = activities.slice(0).reverse()
 
@@ -31,17 +31,18 @@ function RunTable ({ data }) {
         </Center>
       ) : (
         <Box>
-          <Heading as='h2'>Your Runs</Heading>
+          <Heading as='h2'>Your Activities</Heading>
           <Center>
             <Table>
               <Thead>
                 <Tr>
                   <Th>Date</Th>
+                  <Th>Type</Th>
                   <Th>Distance</Th>
                   <Th>Time</Th>
                   <Th>Pace</Th>
                   <Th>Elevation Gain</Th>
-                  {/* <Th>Strava</Th> */}
+                  <Th>Strava</Th>
                 </Tr>
               </Thead>
               <Tbody>
