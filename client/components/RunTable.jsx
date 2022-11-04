@@ -4,7 +4,7 @@ import TableRow from './TableRow'
 
 function RunTable ({ data }) {
   const { loading, activities } = data
-  const [items, setItems] = useState(0)
+  const [items, setItems] = useState(10)
   const prevItemsRef = useRef()
   const activitiesReverse = activities.slice(0).reverse()
 
